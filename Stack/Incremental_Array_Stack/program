@@ -1,0 +1,61 @@
+import sys
+from Code.Stack.Incremental_Array_Stack.Stack import Stack
+
+
+def user_input():
+    print("Please Enter the Stack element value")
+    return input()
+
+
+def print_info():
+    print("Please use the below commands for Stack creation")
+    print("1 - Add to the Stack")
+    print("2 - Remove from Stack")
+    print("3 - Check if stack is Empty")
+    print("4 - Check if stack is full")
+    print("5 - Display the stack top element")
+    print("6 - Display the stack")
+    print("-1 - Print Final list and Exit the Program")
+
+
+if __name__ == '__main__':
+    print("Welcome to Stack")
+    print_info()
+    stack = Stack()
+    while True:
+        print("Enter your choice")
+        choice = input()
+        while choice != "-1":
+            if choice == "1":
+                data = user_input()
+                stack.push(data)
+                break
+            elif choice == "2":
+                stack.pop()
+                break
+            elif choice == "3":
+                stack.is_empty()
+                break
+            elif choice == "4":
+                stack.is_full()
+                break
+            elif choice == "5":
+                stack.peek()
+                break
+            elif choice == "6":
+                print("Displaying the Stack")
+                stack.display()
+                break
+            else:
+                print("WRONG CHOICE...")
+                print_info()
+                print("************* Please Enter The number in the above range ****************")
+                break
+        if choice == "-1":
+            print(str.format("The number of elements in the stack are : {0}", len(stack)))
+            print("***** Below is the Complete Linked List *****")
+            stack.display()
+            print("Press 0 to Exit")
+            do_exit = input()
+            if do_exit == "0":
+                sys.exit("Thank you Exiting Program")
