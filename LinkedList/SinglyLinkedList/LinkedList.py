@@ -14,13 +14,15 @@ class LinkedList:
             print("Can't Traverse through an Empty List, Sorry :(")
             return
         elif position:
-            print(str.format("Traversing to position {0}", position))
+            # print(str.format("Traversing to position {0}", position))
             for i in range(position-1):
                 node = node.next_node
             return node
+        elif self.length() == 1:
+            return self.StartNode
         else:
-            print("Traversing to the last node")
-            for i in range(self.length() + 1):
+            # print("Traversing to the last node")
+            while 1:
                 if node.next_node.next_node is None:
                     return node
                 node = node.next_node
@@ -42,7 +44,7 @@ class LinkedList:
             node.data = data
             node.next_node = self.StartNode
             self.StartNode = node
-            print(str.format("Node Successfully Added at the beginning with data = {0}", data))
+            # print(str.format("Node Successfully Added at the beginning with data = {0}", data))
             return
 
     """ Add a node at the end of the list. """
@@ -52,11 +54,12 @@ class LinkedList:
             return
         else:
             node = self.traverse_through_node()
+            node = node.next_node if self.length() > 1 else node
             new_node = Node()
             new_node.data = data
-            node.next_node.next_node = new_node
+            node.next_node = new_node
             new_node.next_node = None
-            print(str.format("Node Successfully Added at the end with data = {0}", data))
+            # print(str.format("Node Successfully Added at the end with data = {0}", data))
             return
 
     """ Add a node in between the list. """
@@ -71,7 +74,7 @@ class LinkedList:
             new_node.next_node = a
             new_node.data = data
             prev_node.next_node = new_node
-            print(str.format("Node Successfully Added at position {0} with data = {1}", position, data))
+            # print(str.format("Node Successfully Added at position {0} with data = {1}", position, data))
             return
 
     """ Remove a node from the beginning of the list. """
@@ -80,7 +83,7 @@ class LinkedList:
             print("The Linked List is empty, cannot delete from an empty List :(")
             return
         else:
-            print(str.format("Start Node {0} is deleted", self.StartNode.data))
+            # print(str.format("Start Node {0} is deleted", self.StartNode.data))
             self.StartNode = self.StartNode.get_next()
             return
 
@@ -91,8 +94,14 @@ class LinkedList:
             return
         else:
             node = self.traverse_through_node()
-            print(str.format("End Node with data {0} is deleted", node.next_node.data))
-            node.set_node()
+            if self.length() == 1:
+                # print(str.format("End Node with data {0} is deleted", node.data))
+                self.StartNode.data = None
+                return
+            # print(str.format("End Node with data {0} is deleted", node.next_node.data))
+            node.next_node = None
+
+
 
     """ Remove a node from the middle of the list. """
     def delete_node_at_position(self, position):
@@ -101,7 +110,7 @@ class LinkedList:
             return
         else:
             node = self.traverse_through_node(position)
-            print(str.format("Node at position {1} with data {0} is deleted", node.next_node.data, position))
+            # print(str.format("Node at position {1} with data {0} is deleted", node.next_node.data, position))
             node.next_node = node.next_node.next_node
 
     """ Search Elements in the List. """

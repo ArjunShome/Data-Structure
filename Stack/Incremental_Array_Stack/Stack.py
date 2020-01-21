@@ -24,17 +24,18 @@ class Stack:
         self.top = node
 
     def pop(self):
-        deleted_node = self.top
+        deleted_node = self.top.data
         self.stack.delete_end_node()
         if self.stack.StartNode == self.top:
             self.top = None
-            return
+            self.length -= 1
+            return deleted_node
         node = self.stack.StartNode
         while node.next_node is not None:
             node = node.next_node
         self.top = node
         self.length -= 1
-        return deleted_node.data
+        return deleted_node
 
     def peek(self):
         print(self.top)

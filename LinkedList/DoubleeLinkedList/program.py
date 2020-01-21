@@ -8,6 +8,11 @@ def user_input():
     return input()
 
 
+def search_user_input():
+    print("Please Enter Value to be Searched")
+    return input()
+
+
 def user_get_index():
     print("Please Enter the location where the Node will be Inserted/Deleted ")
     return input()
@@ -15,12 +20,12 @@ def user_get_index():
 
 def print_info():
     print("Please use the below commands for Linked list creation")
-    print("1 - Create node at the start of the List")
-    print("2 - Create node at the middle of the List")
-    print("3 - Create node at the end of the List")
-    print("4 - Delete node from the start of the List")
-    print("5 - Delete node from the middle of the List")
-    print("6 - Delete node from the end of the List")
+    print("1 - Prepend to the List")
+    print("2 - Insert to the List")
+    print("3 - Append to the List")
+    print("4 - Delete from the List")
+    print("5 - Pop the list")
+    print("6 - Search in the list")
     print("7 - Display the list")
     print("-1 - Print Final list and Exit the Program")
 
@@ -35,26 +40,28 @@ if __name__ == '__main__':
         while choice != "-1":
             if choice == "1":
                 data = user_input()
-                lst.insert_beginning(data)
+                lst.prepend(data)
                 break
             elif choice == "2":
                 data = user_input()
                 location = int(user_get_index())
-                lst.insert_at_position(data, location)
+                lst.insert(data, location)
                 break
             elif choice == "3":
                 data = user_input()
-                lst.insert_end(data)
+                lst.append(data)
                 break
             elif choice == "4":
-                lst.delete_beginning()
+                location = int(user_get_index())
+                lst.delete(location)
                 break
             elif choice == "5":
-                location = int(user_get_index())
-                lst.delete_at_position(location)
+                lst.pop()
                 break
             elif choice == "6":
-                lst.delete_end()
+                print("Starting Search.....")
+                data = search_user_input()
+                lst.search(data)
                 break
             elif choice == "7":
                 print("Displaying the List")
