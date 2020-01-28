@@ -19,6 +19,8 @@ class BinaryTree:
     # Binary Search Tree insertion implementation
     def insert_child_bst(self, root, data):
         child = Node(data)
+        if root.data == child.data:
+            return
         if root.data < child.data:
             if root.right is None:
                 root.right = child
@@ -30,8 +32,15 @@ class BinaryTree:
             else:
                 self.insert_child_bst(root.left, data)
 
-
-
+    # Search an item in Binary Search Tree
+    def search(self, root, data):
+        if root and root.data == data:
+            return data
+        elif root and root.data < data:
+            return self.search(root.right, data)
+        elif root and root.data > data:
+            return self.search(root.left, data)
+        return False
 
     # Binary Tree normal implementation
     def insert_child(self, data):
